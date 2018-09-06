@@ -74,7 +74,7 @@ $values[':width'] = $interval;
 
 // We don't track instructor views in the overall...
 if ( $USER->instructor ) {
-    $sql = "UPDATE {$CFG->dbprefix}youtube_views SET 
+    $sql = "UPDATE {$CFG->dbprefix}warpwire_views SET 
         seconds = :seconds, width = :width
     WHERE link_id = :link_id";
     $PDOX->queryDie($sql, array(
@@ -83,7 +83,7 @@ if ( $USER->instructor ) {
         ':width' => $interval
     ));
 } else {
-    $sql = "INSERT into {$CFG->dbprefix}youtube_views 
+    $sql = "INSERT into {$CFG->dbprefix}warpwire_views 
     ( link_id, seconds, width, 
     ".$insert_columns.")
     VALUES (:link_id, :seconds, :width,
@@ -97,7 +97,7 @@ if ( $USER->instructor ) {
 }
 
 // Insert the user record
-$sql = "INSERT into {$CFG->dbprefix}youtube_views_user
+$sql = "INSERT into {$CFG->dbprefix}warpwire_views_user
 ( link_id, user_id, seconds, width, 
 ".$insert_columns.")
 VALUES (:link_id, :user_id, :seconds, :width,
@@ -127,7 +127,7 @@ if ( ! $RESULT->id || $RESULT->grade >= 1.0 ) return;
 $last_grade_send = isset($_SESSION['last_grade_send']) ? $_SESSION['last_grade_send'] : 0;
 if ( time() < ($last_grade_send + 30) ) return;
 
-$sql = "SELECT * FROM {$CFG->dbprefix}youtube_views_user
+$sql = "SELECT * FROM {$CFG->dbprefix}warpwire_views_user
 WHERE link_id = :link_id AND user_id = :user_id LIMIT 1";
 
 $row = $PDOX->rowDie($sql, array(

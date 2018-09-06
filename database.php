@@ -2,8 +2,8 @@
 
 // The SQL to uninstall this tool
 $DATABASE_UNINSTALL = array(
-  "drop table if exists {$CFG->dbprefix}youtube_views;",
-  "drop table if exists {$CFG->dbprefix}youtube_views_by_student;"
+  "drop table if exists {$CFG->dbprefix}warpwire_views;",
+  "drop table if exists {$CFG->dbprefix}warpwire_views_by_student;"
 );
 
 // The SQL to create the necessary tables if they don't exist
@@ -18,8 +18,8 @@ $buckets .= ",\n";
 
 $DATABASE_INSTALL = array(
 
-  array( "{$CFG->dbprefix}youtube_views",
-  "CREATE TABLE `{$CFG->dbprefix}youtube_views` (
+  array( "{$CFG->dbprefix}warpwire_views",
+  "CREATE TABLE `{$CFG->dbprefix}warpwire_views` (
     link_id             INTEGER NOT NULL,
     seconds             INTEGER NOT NULL,
     width               INTEGER NOT NULL,
@@ -29,7 +29,7 @@ $DATABASE_INSTALL = array(
 
 ".$buckets."
 
-    CONSTRAINT `{$CFG->dbprefix}youtube_views_ibfk_1`
+    CONSTRAINT `{$CFG->dbprefix}warpwire_views_ibfk_1`
         FOREIGN KEY (`link_id`)
         REFERENCES `{$CFG->dbprefix}lti_link` (`link_id`)
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -39,8 +39,8 @@ $DATABASE_INSTALL = array(
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
   "),
 
-  array( "{$CFG->dbprefix}youtube_views_user",
-  "CREATE TABLE `{$CFG->dbprefix}youtube_views_user` (
+  array( "{$CFG->dbprefix}warpwire_views_user",
+  "CREATE TABLE `{$CFG->dbprefix}warpwire_views_user` (
     link_id             INTEGER NOT NULL,
     user_id             INTEGER NOT NULL,
     seconds             INTEGER NOT NULL,
@@ -51,12 +51,12 @@ $DATABASE_INSTALL = array(
 
 ".$buckets."
 
-    CONSTRAINT `{$CFG->dbprefix}youtube_views_user_ibfk_1`
+    CONSTRAINT `{$CFG->dbprefix}warpwire_views_user_ibfk_1`
         FOREIGN KEY (`link_id`)
         REFERENCES `{$CFG->dbprefix}lti_link` (`link_id`)
         ON DELETE CASCADE ON UPDATE CASCADE,
 
-    CONSTRAINT `{$CFG->dbprefix}youtube_views_user_ibfk_2`
+    CONSTRAINT `{$CFG->dbprefix}warpwire_views_user_ibfk_2`
         FOREIGN KEY (`user_id`)
         REFERENCES `{$CFG->dbprefix}lti_user` (`user_id`)
         ON DELETE CASCADE ON UPDATE CASCADE,

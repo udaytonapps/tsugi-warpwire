@@ -20,7 +20,7 @@ function zpad($i) {
     return str_pad($i."", 3, "0", STR_PAD_LEFT);
 }
 
-$sql = "SELECT * FROM {$CFG->dbprefix}youtube_views 
+$sql = "SELECT * FROM {$CFG->dbprefix}warpwire_views 
 WHERE link_id = :link_id LIMIT 1";
 
 $rows = $PDOX->allRowsDie($sql, array(
